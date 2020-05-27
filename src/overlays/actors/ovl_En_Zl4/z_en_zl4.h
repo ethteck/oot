@@ -6,9 +6,23 @@
 
 struct EnZl4;
 
+typedef void (*EnZl4ActionFunc)(struct EnZl4*, GlobalContext*);
+typedef void (*EnZl4DrawFunc)(struct EnZl4*, GlobalContext*);
+
 typedef struct EnZl4 {
     /* 0x0000 */ Actor actor;
-    /* 0x014C */ char unk_14C[0x1A4];
+    /* 0x014C */ SkelAnime skelAnime;
+    /* 0x0190 */ EnZl4ActionFunc actionFunc;
+    /* 0x0194 */ ColliderCylinder collider;
+    /* 0x01E0 */ char unk_1E0[0x28];
+    /* 0x0208 */ u8 unk_208;
+    /* 0x0209 */ u8 unk_209;
+    /* 0x020A */ char unk_20A[0x3];
+    /* 0x020D */ u8 unk_20D;
+    /* 0x020E */ u8 unk_20E;
+    /* 0x020F */ char unk_20F[0x9];
+    /* 0x0218 */ Vec3s limbDrawTable[18];
+    /* 0x0284 */ Vec3s transitionDrawTable[18];
 } EnZl4; // size = 0x02F0
 
 extern const ActorInit En_Zl4_InitVars;
