@@ -35,9 +35,9 @@ glabel EnZl4_Init
 /* 0067C 80B5BE2C 0C0170D9 */  jal     Collider_InitCylinder
 
 /* 00680 80B5BE30 8FA40044 */  lw      $a0, 0x0044($sp)
-/* 00684 80B5BE34 3C0780B6 */  lui     $a3, %hi(D_80B5E780)       ## $a3 = 80B60000
+/* 00684 80B5BE34 3C0780B6 */  lui     $a3, %hi(sCylinderInit)       ## $a3 = 80B60000
 /* 00688 80B5BE38 8FA50030 */  lw      $a1, 0x0030($sp)
-/* 0068C 80B5BE3C 24E7E780 */  addiu   $a3, $a3, %lo(D_80B5E780)  ## $a3 = 80B5E780
+/* 0068C 80B5BE3C 24E7E780 */  addiu   $a3, $a3, %lo(sCylinderInit)  ## $a3 = 80B5E780
 /* 00690 80B5BE40 8FA40044 */  lw      $a0, 0x0044($sp)
 /* 00694 80B5BE44 0C01712B */  jal     Collider_SetCylinder
 

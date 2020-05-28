@@ -14,7 +14,8 @@ typedef struct EnZl4 {
     /* 0x014C */ SkelAnime skelAnime;
     /* 0x0190 */ EnZl4ActionFunc actionFunc;
     /* 0x0194 */ ColliderCylinder collider;
-    /* 0x01E0 */ char unk_1E0[0x28];
+    /* 0x01E0 */ s16 unk_1E0;
+    /* 0x01E2 */ char unk_1E2[0x26];
     /* 0x0208 */ u8 unk_208;
     /* 0x0209 */ u8 unk_209;
     /* 0x020A */ char unk_20A[0x3];
