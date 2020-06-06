@@ -33,7 +33,8 @@ const ActorInit En_Zl4_InitVars = {
     (ActorFunc)EnZl4_Draw,
 };
 
-ColliderCylinderInit sCylinderInit =
+//todo sCylinderInit
+ColliderCylinderInit D_80B5E780 =
 {
     { COLTYPE_UNK10, 0x00, 0x00, 0x39, 0x20, COLSHAPE_CYLINDER },
     { 0x00, { 0x00000000, 0x00, 0x00 }, { 0x00000000, 0x00, 0x00 }, 0x00, 0x00, 0x01 },
