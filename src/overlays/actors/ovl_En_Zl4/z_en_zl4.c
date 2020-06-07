@@ -133,6 +133,7 @@ s16 func_80B5B9B0(GlobalContext* globalCtx, Actor* thisx) {
 
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/func_80B5BBC0.s")
 
+void func_80B5BC00(EnZl4* this, GlobalContext* globalCtx);
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/func_80B5BC00.s")
 
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/func_80B5BCDC.s")
@@ -146,7 +147,7 @@ s16 func_80B5B9B0(GlobalContext* globalCtx, Actor* thisx) {
     ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawFunc_Circle, 18.0f);
     func_80034EC0(&this->skelAnime, &D_80B5E7B8, 0x15);
     Collider_InitCylinder(globalCtx, &this->collider);
-    Collider_SetCylinder(globalCtx, &this->collider, &this->actor, &sCylinderInit);
+    Collider_SetCylinder(globalCtx, &this->collider, &this->actor, &D_80B5E780);
     func_80061EFC(&this->actor.colChkInfo, NULL, &D_80B5E7AC);
     Actor_SetScale(&this->actor, 0.01f);
     this->actor.unk_1F = 6;
