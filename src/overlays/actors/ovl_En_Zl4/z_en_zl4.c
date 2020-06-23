@@ -33,9 +33,8 @@ const ActorInit En_Zl4_InitVars = {
     (ActorFunc)EnZl4_Draw,
 };
 
-//todo sCylinderInit
-ColliderCylinderInit D_80B5E780 =
-{
+// todo sCylinderInit
+ColliderCylinderInit D_80B5E780 = {
     { COLTYPE_UNK10, 0x00, 0x00, 0x39, 0x20, COLSHAPE_CYLINDER },
     { 0x00, { 0x00000000, 0x00, 0x00 }, { 0x00000000, 0x00, 0x00 }, 0x00, 0x00, 0x01 },
     { 10, 44, 0, { 0, 0, 0 } },
@@ -127,9 +126,17 @@ s16 func_80B5B9B0(GlobalContext* globalCtx, Actor* thisx) {
 
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/func_80B5B9E8.s")
 
-#pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/func_80B5BB38.s")
+void func_80B5BB38(EnZl4* this, GlobalContext* globalCtx) {
+    this->skelAnime.flags |= 1;
+    SkelAnime_LoadAnimationType5(globalCtx, &this->actor, &this->skelAnime, 1.0f);
+}
 
-#pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/func_80B5BB78.s")
+void func_80B5BB78(EnZl4* this, GlobalContext* globalCtx) {
+    Player* player = PLAYER;
+
+    this->unk_1E0.unk_18 = player->actor.posRot.pos;
+    func_80034A14(&this->actor, &this->unk_1E0, 2, 2);
+}
 
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/func_80B5BBC0.s")
 
@@ -143,7 +150,8 @@ void func_80B5BC00(EnZl4* this, GlobalContext* globalCtx);
     s32 pad;
     EnZl4* this = THIS;
 
-    SkelAnime_InitSV(globalCtx, &this->skelAnime, &D_0600E038, NULL, this->limbDrawTable, this->transitionDrawTable, 18);
+    SkelAnime_InitSV(globalCtx, &this->skelAnime, &D_0600E038, NULL, this->limbDrawTable, this->transitionDrawTable,
+                     18);
     ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawFunc_Circle, 18.0f);
     func_80034EC0(&this->skelAnime, &D_80B5E7B8, 0x15);
     Collider_InitCylinder(globalCtx, &this->collider);
@@ -158,7 +166,7 @@ void func_80B5BC00(EnZl4* this, GlobalContext* globalCtx);
     if (gSaveContext.sceneSetupIndex >= 4) {
         func_80034EC0(&this->skelAnime, &D_80B5E7B8, 0);
         this->actionFunc = func_80B5E108;
-    } else if (gSaveContext.eventChkInf[4] & 1) {
+    } else if ((gSaveContext.eventChkInf[4] & 0xFF) & 1) {
         func_80034EC0(&this->skelAnime, &D_80B5E7B8, 0);
         this->actionFunc = func_80B5E090;
     } else {
@@ -176,15 +184,28 @@ void func_80B5BC00(EnZl4* this, GlobalContext* globalCtx);
     }
 }*/
 
-void EnZl4_Destroy(Actor *thisx, GlobalContext *globalCtx) {
+void EnZl4_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     EnZl4* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
 }
 
-#pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/func_80B5BF90.s")
+s32 func_80B5BF90(EnZl4* this, s32 arg1) {
+    if (!func_800A56C8(&this->skelAnime, this->skelAnime.animFrameCount)) {
+        return 0;
+    }
+    func_80034EC0(&this->skelAnime, D_80B5E7B8, arg1);
+    return 1;
+}
 
-#pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/func_80B5BFE4.s")
+void func_80B5BFE4(EnZl4* this) {
+    f32 temp_f0 = this->skelAnime.initialFrame;
+
+    this->skelAnime.initialFrame = this->skelAnime.animFrameCount;
+    this->skelAnime.animCurrentFrame = this->skelAnime.animFrameCount;
+    this->skelAnime.animFrameCount = temp_f0;
+    this->skelAnime.animPlaybackSpeed = -1.0f;
+}
 
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/func_80B5C008.s")
 
@@ -204,8 +225,9 @@ void EnZl4_Destroy(Actor *thisx, GlobalContext *globalCtx) {
 
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/func_80B5DE1C.s")
 
-void func_80B5E090(EnZl4 *this, GlobalContext *globalCtx) {
-    func_800343CC(globalCtx, &this->actor, &this->unk_1E0, this->collider.dim.radius + 60.0f, EnZl4_GetText, func_80B5B9B0);
+void func_80B5E090(EnZl4* this, GlobalContext* globalCtx) {
+    func_800343CC(globalCtx, &this->actor, &this->unk_1E0, this->collider.dim.radius + 60.0f, EnZl4_GetText,
+                  func_80B5B9B0);
     func_80B5BB78(this, globalCtx);
 }
 
