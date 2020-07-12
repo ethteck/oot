@@ -89,6 +89,16 @@ extern SkeletonHeader D_0600E038;
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/func_80B5B7B0.s")
 
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/func_80B5B888.s")
+/*void func_80B5B888(GlobalContext *globalCtx, s16 arg1) {
+    Camera* activeCam = ACTIVE_CAM;
+    Player* player = PLAYER;
+    void *temp_v0;
+
+    func_8005A77C(activeCam, 0x25);
+    func_8005AC60(activeCam);
+    temp_v0 = (arg1 * 0xC) + D_80B5FA90;
+    func_8005AC6C(activeCam, temp_v0->unk0, temp_v0->unk4, player);
+}*/
 
 u16 EnZl4_GetText(GlobalContext* globalCtx, Actor* thisx) {
     u16 faceReaction = Text_GetFaceReaction(globalCtx, 0x16);
