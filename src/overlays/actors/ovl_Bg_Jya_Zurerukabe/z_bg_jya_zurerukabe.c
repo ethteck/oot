@@ -5,6 +5,7 @@
  */
 
 #include "z_bg_jya_zurerukabe.h"
+#include "vt.h"
 
 #include <vt.h>
 
