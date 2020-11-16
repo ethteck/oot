@@ -1,8 +1,8 @@
 #ifndef _Z_EN_GS_H_
 #define _Z_EN_GS_H_
 
-#include <ultra64.h>
-#include <global.h>
+#include "ultra64.h"
+#include "global.h"
 
 struct EnGs;
 
@@ -20,7 +20,7 @@ typedef struct EnGs {
     /* 0x01B4 */ Vec3f unk_1B4[2];
     /* 0x01CC */ char unk_1CC[0xC];
     /* 0x01D8 */ Vec3f unk_1D8;
-    /* 0x01E4 */ Color_RGBA8 unk_1E4;
+    /* 0x01E4 */ Color_RGBA8 flashColor;
     /* 0x01E8 */ f32 unk_1E8;
     /* 0x01EC */ f32 unk_1EC;
     /* 0x01F0 */ f32 unk_1F0;
