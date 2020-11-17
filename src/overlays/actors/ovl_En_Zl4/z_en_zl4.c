@@ -155,8 +155,9 @@ void func_80B5BC00(EnZl4* this, GlobalContext* globalCtx);
 
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/func_80B5BCDC.s")
 
-#pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/EnZl4_Init.s")
-/*void EnZl4_Init(Actor* thisx, GlobalContext* globalCtx) {
+// t registers are off by 1 once save context starts getting used
+#ifdef NON_MATCHING
+void EnZl4_Init(Actor* thisx, GlobalContext* globalCtx) {
     s32 pad;
     EnZl4* this = THIS;
 
@@ -176,7 +177,7 @@ void func_80B5BC00(EnZl4* this, GlobalContext* globalCtx);
     if (gSaveContext.sceneSetupIndex >= 4) {
         func_80034EC0(&this->skelAnime, &D_80B5E7B8, 0);
         this->actionFunc = func_80B5E108;
-    } else if ((gSaveContext.eventChkInf[4] & 0xFF) & 1) {
+    } else if (gSaveContext.eventChkInf[4] & 1) {
         func_80034EC0(&this->skelAnime, &D_80B5E7B8, 0);
         this->actionFunc = func_80B5E090;
     } else {
@@ -192,7 +193,10 @@ void func_80B5BC00(EnZl4* this, GlobalContext* globalCtx);
         }
         this->actionFunc = func_80B5DE1C;
     }
-}*/
+}
+#else
+#pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Zl4/EnZl4_Init.s")
+#endif
 
 void EnZl4_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     EnZl4* this = THIS;
